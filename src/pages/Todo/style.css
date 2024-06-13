@@ -1,0 +1,45 @@
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.todo-item:last-child {
+  border-bottom: none;
+}
+
+.todo-item span {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.buttons {
+  display: flex;
+}
+
+.buttons button {
+  margin-left: 10px;
+}
+
+.buttons .edit-button {
+  background-color: #28a745;
+}
+
+.buttons .edit-button:hover {
+  background-color: #218838;
+}
+
+.buttons .delete-button {
+  background-color: #dc3545;
+}
+
+.buttons .delete-button:hover {
+  background-color: #c82333;
+}
