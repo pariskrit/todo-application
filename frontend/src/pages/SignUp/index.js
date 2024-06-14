@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import InputLabel from '../../components/modules/InputLabel';
 import Button from '../../components/elements/Button';
 import Header from '../../components/elements/Header';
 import Error from '../../components/elements/Error';
 import FormContainer from '../../components/wrappers/FormContainer';
+import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../../App';
+import { ROUTES } from '../../helpers/constants';
 
 const SIGNUP_DETAILS = { email: '', username: '', password: '', confirmPassword: '' }
 
@@ -11,21 +14,27 @@ function SignUp() {
 
     const [error, setError] = useState('');
     const [signUpDetails, setSignUpDetails] = useState(SIGNUP_DETAILS);
+    const [users, setUsers] = useContext(UserContext);
+    const navigate = useNavigate();
 
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
         // check for empty field
-        if (email === '' || password === '' || password === '' || confirmPassword === '')
+        if (email === '' || username === '' || password === '' || confirmPassword === '') {
             setError('All fields are required');
-
+            return;
+        }
         //  Check if password and confirm password match
-        if (password !== confirmPassword)
+        if (password !== confirmPassword) {
             setError("Passwords don't match")
+            return;
+        }
 
-        alert(email, password)
+        setUsers([...users, { email, password, username }])
 
+        navigate(ROUTES.signin);
 
     };
 
@@ -65,6 +74,9 @@ function SignUp() {
                 <Error showError={error} message={error} />
 
                 <Button type="submit">Sign Up</Button>
+                <p>
+                    Already have an account? <Link to="/">Sign In</Link>
+                </p>
             </form>
         </FormContainer >
     );
