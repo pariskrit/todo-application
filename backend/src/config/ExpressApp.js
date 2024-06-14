@@ -1,6 +1,8 @@
 import dotenv from "dotenv";
 import todoRoutes from "../routes/todoRoutes.js";
 import express from "express";
+import cors from 'cors';
+import morgan from "morgan";
 
 export default async (app) => {
   // Load environment variables
@@ -12,6 +14,12 @@ export default async (app) => {
       limit: "20kb",
     })
   );
+
+  // Enable All CORS Requests
+  app.use(cors())
+
+  // logger middleware
+  app.use(morgan('tiny'));
 
   app.use("/api/todos", todoRoutes);
 

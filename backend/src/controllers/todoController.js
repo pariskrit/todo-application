@@ -21,7 +21,7 @@ const addTodo = asyncMiddleware((req, res) => {
 const updateTodo = asyncMiddleware((req, res) => {
   const { id } = req.params;
   const { task } = req.body;
-  const todoIdToUpdate = +id;
+  const todoIdToUpdate = id;
 
   const index = findTodoIndex(todoIdToUpdate);
 
@@ -39,7 +39,7 @@ const updateTodo = asyncMiddleware((req, res) => {
 
 const deleteTodo = asyncMiddleware((req, res) => {
   const { id } = req.params;
-  const todoIdToUpdate = +id;
+  const todoIdToUpdate = id;
   const index = findTodoIndex(todoIdToUpdate);
 
   // No todo present of the Id
