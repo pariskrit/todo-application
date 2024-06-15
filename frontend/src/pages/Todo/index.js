@@ -73,6 +73,7 @@ function Todo() {
         getTodos();
 
     }, [])
+    console.log(todos)
     return (
         <div className="todo-container">
             <Header>Welcome To Todo App</Header>
@@ -92,8 +93,8 @@ function Todo() {
                 </form>
             </FormContainer>
             <FormContainer>
-                {todos?.length === 0 ? <p>Hurray! No Task To Do</p> : <ul>
-                    {todos.map((todo) => (
+                {todos && todos?.length === 0 ? <p>Hurray! No Task To Do</p> : <ul>
+                    {todos?.map((todo) => (
                         <TodoItem
                             key={todo.id}
                             todo={todo}
